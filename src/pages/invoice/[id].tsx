@@ -28,7 +28,7 @@ export default function InvoicePage() {
         const json = await res.json();
 
         if (res.ok && json) {
-          setInvoice(json.invoice ?? json); // support both { invoice } or direct object
+          setInvoice(json.invoice ?? json); 
         } else {
           setError(json.error || 'Unable to load invoice');
         }
