@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <main>
       <h1>🚧 Request a Free Quote</h1>
-      <SmartQuoteForm sourcePage="home" />
+      <SmartQuoteForm /> {/* ✅ Removed sourcePage */}
     </main>
   );
 }
