@@ -1,8 +1,15 @@
 export async function submitRFQ(data: any) {
-  const res = await fetch('https://rfq-invoice3-backend.onrender.com/api/rfq', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/rfq`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
-  return res.json();
+
+  const result = await res.json();
+
+  if (!res.ok) {
+    throw new Error(result.error || 'Failed to submit RFQ');
+  }
+
+  return result;
 }

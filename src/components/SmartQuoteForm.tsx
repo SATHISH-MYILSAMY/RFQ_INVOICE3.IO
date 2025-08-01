@@ -1,4 +1,6 @@
+// frontend/components/SmartQuoteForm.tsx
 import React, { useState } from 'react';
+import { submitRFQ } from '../api/rfq';
 
 export default function SmartQuoteForm({ sourcePage }: { sourcePage: string }) {
   const [data, setData] = useState({
@@ -10,20 +12,14 @@ export default function SmartQuoteForm({ sourcePage }: { sourcePage: string }) {
 
   async function submit() {
     setSubmitting(true);
-    
-    const res = await fetch('https://732d1435377a.ngrok-free.app/api/rfq', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...data, sourcePage }),
-    });
-
-    if (res.ok) {
+    try {
+      const result = await submitRFQ({ ...data, sourcePage });
       alert('✅ Thanks! Please check WhatsApp.');
-    } else {
-      alert('❌ Failed to submit RFQ. Please try again.');
+    } catch (err: any) {
+      alert(`❌ Error: ${err.message}`);
+    } finally {
+      setSubmitting(false);
     }
-
-    setSubmitting(false);
   }
 
   return (
