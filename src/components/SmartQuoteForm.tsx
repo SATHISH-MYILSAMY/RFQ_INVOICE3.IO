@@ -1,4 +1,3 @@
-// frontend/components/SmartQuoteForm.tsx
 import React, { useState } from 'react';
 import { submitRFQ } from '../api/rfq';
 
@@ -17,7 +16,6 @@ export default function SmartQuoteForm() {
   async function submit() {
     setSubmitting(true);
     try {
-      // Only send the required fields to backend
       const result = await submitRFQ({
         name: data.name,
         phone: data.phone,
@@ -38,7 +36,6 @@ export default function SmartQuoteForm() {
     <form onSubmit={e => { e.preventDefault(); submit(); }}>
       <input type="text" placeholder="Full Name" required onChange={e => setData(d => ({ ...d, name: e.target.value }))} />
       <input type="tel" placeholder="Phone" required onChange={e => setData(d => ({ ...d, phone: e.target.value }))} />
-      {/* Optional Email Field - Not sent to backend */}
       <input type="email" placeholder="Email (optional)" onChange={e => setData(d => ({ ...d, email: e.target.value }))} />
       <input type="text" placeholder="Location" onChange={e => setData(d => ({ ...d, location: e.target.value }))} />
       <input type="text" placeholder="Service Type" required onChange={e => setData(d => ({ ...d, serviceType: e.target.value }))} />
