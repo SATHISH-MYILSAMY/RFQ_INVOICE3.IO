@@ -24,11 +24,11 @@ export default function InvoicePage() {
 
     async function fetchInvoice() {
       try {
-        const res = await fetch(`https://rfq-invoice3-backend.onrender.com/api/invoice/${id}`);
+        const res = await fetch(`https://rfq-invoice3-io-1.onrender.com/api/invoice/${id}`); // ✅ Fixed backend URL
         const json = await res.json();
 
         if (res.ok && json) {
-          setInvoice(json.invoice ?? json); 
+          setInvoice(json.invoice ?? json);
         } else {
           setError(json.error || 'Unable to load invoice');
         }
