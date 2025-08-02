@@ -24,7 +24,7 @@ export default function InvoicePage() {
 
     async function fetchInvoice() {
       try {
-        const res = await fetch(`https://rfq-invoice3-io-1.onrender.com/api/invoice/${id}`); // ✅ Fixed backend URL
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/invoice/${id}`); // ✅ now uses env
         const json = await res.json();
 
         if (res.ok && json) {
